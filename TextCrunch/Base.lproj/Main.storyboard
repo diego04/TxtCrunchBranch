@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SlN-8A-vyZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SlN-8A-vyZ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -140,6 +140,9 @@
                                 <rect key="frame" x="16" y="80" width="288" height="47"/>
                                 <color key="backgroundColor" red="0.083453172928843564" green="0.85505445075757569" blue="0.42504926567840612" alpha="0.47000000000000003" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Sell Something"/>
+                                <connections>
+                                    <segue destination="r4H-4r-PAO" kind="push" id="zz5-r3-uKr"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XsW-w1-Nm9">
                                 <rect key="frame" x="0.0" y="150" width="320" height="418"/>
@@ -187,7 +190,6 @@
                     <connections>
                         <outlet property="listingTable" destination="XsW-w1-Nm9" id="66W-RE-rgf"/>
                         <outlet property="sellButton" destination="t29-oD-SO0" id="id1-aJ-Aqa"/>
-                        <segue destination="r4H-4r-PAO" kind="push" identifier="StartListingCreation" id="at4-WO-Ocg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="INT-gM-pUQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -422,14 +424,14 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Kzo-BZ-Fi8" kind="push" identifier="searchBookIsbn" id="TVs-pI-eFN"/>
+                                    <action selector="SearchBooksButton:" destination="Xbj-sq-km8" eventType="touchUpInside" id="73T-1h-hW3"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fTc-8K-dDY">
-                                <rect key="frame" x="0.0" y="320" width="320" height="63"/>
+                                <rect key="frame" x="0.0" y="320" width="320" height="68"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Or you can manually enter the ISBN13, which can be found above the UPC code, below.">
+                                    <fragment content="Or you can manually enter the ISBN13 or ISBN10, which can be found above the UPC code, below.">
                                         <attributes>
                                             <color key="NSColor" red="0.42406486739999999" green="0.42406486739999999" blue="0.42406486739999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
@@ -453,12 +455,20 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="We only take 10 or 13 characters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAY-vp-98h">
+                                <rect key="frame" x="40" y="425" width="252" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="LmB-0y-2d8"/>
                     <connections>
+                        <outlet property="InputLengthWarning" destination="aAY-vp-98h" id="D0A-SH-DvV"/>
                         <outlet property="isbn" destination="XJN-Ev-9Db" id="xWd-ma-m4h"/>
+                        <segue destination="Kzo-BZ-Fi8" kind="push" identifier="searchBookIsbn" id="je7-gI-nrX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PxI-3g-0KG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -478,7 +488,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spq-nR-7C6">
-                                <rect key="frame" x="0.0" y="210" width="320" height="21"/>
+                                <rect key="frame" x="-137" y="219" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -487,37 +497,37 @@
                                 <rect key="frame" x="11" y="73" width="136" height="140"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c4H-rR-gG5">
-                                <rect key="frame" x="0.0" y="239" width="320" height="21"/>
+                                <rect key="frame" x="-127" y="248" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ec2-Wk-9Sc">
-                                <rect key="frame" x="0.0" y="268" width="320" height="21"/>
+                                <rect key="frame" x="-127" y="277" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Publisher" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVF-4i-5pt">
-                                <rect key="frame" x="0.0" y="297" width="320" height="21"/>
+                                <rect key="frame" x="-119" y="306" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Language" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="De7-Wq-tj3">
-                                <rect key="frame" x="0.0" y="326" width="320" height="21"/>
+                                <rect key="frame" x="-119" y="335" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ISBN13" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTZ-X4-3pP">
-                                <rect key="frame" x="0.0" y="355" width="320" height="21"/>
+                                <rect key="frame" x="-127" y="361" width="320" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comments" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3sx-CH-FLa">
-                                <rect key="frame" x="0.0" y="384" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="399" width="320" height="30"/>
                                 <accessibility key="accessibilityConfiguration" hint="Comments" label=""/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -552,9 +562,42 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="deleteListingAction:" destination="Kzo-BZ-Fi8" eventType="touchUpInside" id="Rfs-WL-Vto"/>
+                                </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hv5-5w-N1k">
+                                <rect key="frame" x="91" y="216" width="229" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ClU-II-FHr">
+                                <rect key="frame" x="91" y="248" width="229" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pc4-4D-z9Q">
+                                <rect key="frame" x="91" y="277" width="229" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yRf-lH-hUD">
+                                <rect key="frame" x="91" y="306" width="229" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eVL-1g-NVk">
+                                <rect key="frame" x="91" y="335" width="229" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="biS-PA-niU">
+                                <rect key="frame" x="91" y="361" width="229" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0d-sm-kB5">
-                                <rect key="frame" x="49" y="461" width="223" height="40"/>
+                                <rect key="frame" x="49" y="460" width="223" height="40"/>
                                 <color key="backgroundColor" red="0.96281171089999995" green="0.32081731299999999" blue="0.32051487299999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Update">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -562,7 +605,6 @@
                                 </state>
                                 <connections>
                                     <action selector="updateListing:" destination="Kzo-BZ-Fi8" eventType="touchUpInside" id="dsj-DG-tBd"/>
-                                    <segue destination="KuW-Cq-17O" kind="push" identifier="updateListing" id="C4x-j3-9t9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -570,22 +612,24 @@
                     </view>
                     <navigationItem key="navigationItem" id="23E-Nu-C7A"/>
                     <connections>
-                        <outlet property="author" destination="c4H-rR-gG5" id="5JW-Mg-J6Y"/>
-                        <outlet property="bookTitle" destination="spq-nR-7C6" id="TUD-q5-iar"/>
+                        <outlet property="author" destination="ClU-II-FHr" id="ESh-G7-JaG"/>
+                        <outlet property="bookTitle" destination="Hv5-5w-N1k" id="GWu-H1-7aB"/>
+                        <outlet property="bookimage" destination="g51-dd-9fw" id="kXJ-IN-fMA"/>
                         <outlet property="comments" destination="3sx-CH-FLa" id="SxK-a4-O9o"/>
                         <outlet property="delete" destination="zjL-W3-xpp" id="TtJ-RF-wEz"/>
-                        <outlet property="edition" destination="ec2-Wk-9Sc" id="bfl-JQ-Psz"/>
-                        <outlet property="isbn13" destination="fTZ-X4-3pP" id="eBL-kL-qes"/>
-                        <outlet property="language" destination="De7-Wq-tj3" id="8Tr-Wh-uo6"/>
-                        <outlet property="navigationItem" destination="23E-Nu-C7A" id="wfT-cV-0ah"/>
+                        <outlet property="edition" destination="Pc4-4D-z9Q" id="BgL-B8-8Ca"/>
+                        <outlet property="isbn13" destination="biS-PA-niU" id="tZY-VB-dG2"/>
+                        <outlet property="language" destination="eVL-1g-NVk" id="Ewi-OY-vJO"/>
                         <outlet property="price" destination="AJY-Uo-vRI" id="vx3-SE-Rnn"/>
-                        <outlet property="publisher" destination="MVF-4i-5pt" id="lnW-jW-Z5p"/>
+                        <outlet property="publisher" destination="yRf-lH-hUD" id="kR5-sl-7cs"/>
                         <outlet property="update" destination="E0d-sm-kB5" id="1EQ-Ti-AWR"/>
+                        <segue destination="KuW-Cq-17O" kind="push" identifier="updateListing" id="7JH-vD-d83"/>
+                        <segue destination="Xbj-sq-km8" kind="push" identifier="deleteListing" id="3RN-4a-jny"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21j-s7-Sy2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1764" y="1182"/>
+            <point key="canvasLocation" x="1754" y="1182"/>
         </scene>
         <!--BillingInfoViewController-->
         <scene sceneID="hvu-h5-OA6">
@@ -634,7 +678,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nvt-6H-grt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="868" y="1182"/>
+            <point key="canvasLocation" x="852" y="1244"/>
         </scene>
         <!--ListingViewController-->
         <scene sceneID="3ot-cQ-jsZ">
@@ -727,7 +771,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Kzo-BZ-Fi8" kind="push" identifier="editListing" id="QcH-Gb-e50"/>
+                                    <action selector="EditListingButton:" destination="KuW-Cq-17O" eventType="touchUpInside" id="nSc-oV-Crg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -740,19 +784,19 @@
                         <outlet property="buy" destination="YIN-Ri-h3D" id="LWz-zJ-hlp"/>
                         <outlet property="comments" destination="0lQ-Vi-Ej4" id="HIT-PP-NoS"/>
                         <outlet property="condition" destination="EF2-uK-B2t" id="fHc-JB-xlw"/>
-                        <outlet property="edit" destination="jGA-bV-A5E" id="xPi-KS-rmG"/>
-                        <outlet property="editListing" destination="jGA-bV-A5E" id="Azh-R8-6wj"/>
+                        <outlet property="edit" destination="jGA-bV-A5E" id="RFW-fy-dVL"/>
                         <outlet property="edition" destination="rap-1h-KB7" id="Oqp-A3-fcn"/>
+                        <outlet property="imageHolder" destination="NfW-hi-uMt" id="5FV-31-1Cv"/>
                         <outlet property="isbn13" destination="dE4-ja-a7w" id="21w-JZ-e8r"/>
                         <outlet property="language" destination="b6P-PA-a9Q" id="I6X-DZ-TLk"/>
-                        <outlet property="navigationItem" destination="MR8-fD-DdM" id="qLW-cj-F92"/>
                         <outlet property="price" destination="SQc-X5-Jcj" id="HoC-FG-uFa"/>
                         <outlet property="publisher" destination="5n0-gt-JYw" id="H2x-e2-YRg"/>
+                        <segue destination="Kzo-BZ-Fi8" kind="push" identifier="editListing" id="zZl-z4-dbl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCI-hP-m6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2483" y="1182"/>
+            <point key="canvasLocation" x="2177" y="1182"/>
         </scene>
         <!--Buyer-->
         <scene sceneID="c5E-Fg-VBA">
@@ -980,7 +1024,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="ADF-Af-iZP"/>
-        <segue reference="C4x-j3-9t9"/>
-        <segue reference="QcH-Gb-e50"/>
+        <segue reference="gYi-df-u0E"/>
+        <segue reference="zZl-z4-dbl"/>
+        <segue reference="3RN-4a-jny"/>
     </inferredMetricsTieBreakers>
 </document>

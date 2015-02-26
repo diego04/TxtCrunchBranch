@@ -12,6 +12,9 @@ import UIKit
 class ListingViewController: UIViewController {
     
 
+    @IBOutlet var imageHolder: UIImageView!
+
+    
     @IBOutlet weak var price: UILabel!
     @IBOutlet weak var condition: UILabel!
     @IBOutlet weak var bookTitle: UILabel!
@@ -22,11 +25,18 @@ class ListingViewController: UIViewController {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var language: UILabel!
     
-    @IBOutlet weak var editListing: UIButton!
     @IBOutlet weak var buy: UIButton!
-    @IBOutlet weak var edit: UIButton!
     
     var listing:Listing!
+    var data:NSData? = nil
+    
+    @IBOutlet var edit: UIButton!
+    
+    @IBAction func EditListingButton(sender: AnyObject) {
+        
+        self.performSegueWithIdentifier("editListing", sender: nil)
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +46,12 @@ class ListingViewController: UIViewController {
         //background.frame=self.view.bounds
         //self.view.layer.insertSublayer(background, atIndex: 0)
        
+        if (data != nil){
+            imageHolder!.frame = CGRectMake(31,31,136,140)
+            imageHolder.image = UIImage(data: data!)
+            
+        }
+        
         // Shows edit button to seller, but not buy button
         // Shows buy button to potential buyer, but not edit button
         if (UserController.getCurrentUser() == listing.seller) {
@@ -61,11 +77,18 @@ class ListingViewController: UIViewController {
         comments.text = listing.comment
     }
     
-    // Passes listing to EditListingView
+    // Passes listing to to Edit Listing View Controller
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "editListing") {
             var svc = segue.destinationViewController as EditListingViewController;
-            svc.listing = listing
+            
+            if (data != nil){
+                //image data
+            svc.data = data
+            }
+            
+            svc.bookISBN = self.isbn13.text
+            svc.listing = self.listing
         }
     }
     
